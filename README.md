@@ -23,7 +23,7 @@ Clicking on part of a block of __3 or more continuously adjacent bubbles__ will 
 - Clicking on a non-primary will do one of the following:
   - If there is a valid block of that non-primary color, it will pop.
       - A __2x multiplier__ is awarded for secondary colors (CMY).
-      - A __3x multiplier__ is awarded for the tertiary color (w).
+      - A __3x multiplier__ is awarded for the tertiary color (W).
   - If there are not at least 3 continuously adjacent bubbles of that same color, the bubble will __decompose into its primary components__.
       - A blocks of continuously adjacent bubbles to the original bubble of the same color as a primary component of that bubble will be popped.
       - For example: Clicking a *Magenta* bubble will pop a range of *Red* and *Blue* bubbles. The original bubble will be left as a primary bubble.
