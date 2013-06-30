@@ -78,29 +78,29 @@ Set.prototype = {
 // @param 2d array grid of bubbles, set (object) of bubbles to delete
 function deleteAndFill(grid, delList){
 	// rotate bubbles down in place of removed
-	for(var r=grid.length-1;r>=0;r--){
-		for(var c=grid[r].length-1;c>=0;c--){
-			if(delList.contains(grid[r][c]) && grid[r][c].color == 0){
-				var col = c;
-				var list = new Array();
-				for(var row = 0;row<=r;row++){
-					list.push(grid[row][col]);
-				}
-				for(var x=0;x<r&&list[list.length-1].color == 0 && delList.contains(list[list.length-1]);x++)
-					list.rotate();
-				for(var row = 0;row<=r;row++){
-					grid[row][col] = list[row];
-					list[row].r = row;
-				}
-			}
-			grid[r][c].update();
+	for(var i=0;i<delList.size();i++){
+		var item = delList.get(i);
+		console.log(item);
+		if(item.color != 0)
+			continue;
+		var list = new Array();
+		var r = item.r;
+		var col = item.c;
+		for(var row = 0;row<=r;row++)
+			list.push(grid[row][col]);		
+		for(var x=0;x<r&&list[list.length-1].color == 0 && delList.contains(list[list.length-1]);x++)
+			list.rotate();
+		for(var row = 0;row<=r;row++){
+			grid[row][col] = list[row];
+			list[row].r = row;
+			grid[row][col].update();
 		}
 	}
 	// refill bubbles
 	if(refill)
 		for(var i=0;i<delList.size();i++){
 			if(delList.get(i).color==0){
-				var color = VALS[Math.floor(Math.random()*VALS.length)];
+				var color = VALS[(Math.random()*VALS.length)|0];
 				var r = delList.get(i).r;
 				var c = delList.get(i).c;
 				var canvas = delList.get(i).canvas;

@@ -11,7 +11,7 @@ window.onload = function(){
 
     for(var r=0;r<m;r++){
         for(var c=0;c<n;c++){
-            var color = VALS[Math.floor(Math.random()*VALS.length)];
+            var color = VALS[(Math.random()*VALS.length)|0];
             grid[r][c] = new Bubble(grid, r, c, canvas, color, new fabric.Circle({
               radius: rad, fill: getColorString(color) ,strokeWidth: 1, stroke: '#c3bfbf', left: c*(rad+pad)*2+rad, top: r*(rad+pad)*2+rad, selectable: false
             }));
