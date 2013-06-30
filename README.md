@@ -1,7 +1,7 @@
 chromapop-js
 ============
 
-Javascript implementation of ChromaPop, a game created out of daydreams about optics.
+Javascript implementation of ChromaPop, a game created out of daydreams about optics. Play it [here](http://jonathanzong.com/ChromaPop/).
 
 Code for the Java console prototype: https://github.com/jonathanzong/chromapop-java
 
