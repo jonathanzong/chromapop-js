@@ -26,4 +26,4 @@ Clicking on part of a block of __3 or more continuously adjacent bubbles__ will 
       - A __3x multiplier__ is awarded for the tertiary color (W).
   - If there are not at least 3 continuously adjacent bubbles of that same color, the bubble will __decompose into its primary components__.
       - A blocks of continuously adjacent bubbles to the original bubble of the same color as a primary component of that bubble will be popped.
-      - For example: Clicking a *Magenta* bubble will pop a range of *Red* and *Blue* bubbles. The original bubble will be left as a primary bubble.
+      - For example: Clicking a *Magenta* bubble will pop a range of *Red* and *Blue* bubbles. The original bubble will be left as a bubble one tier down from what it was (tertiary to secondary, secondary to primary).
