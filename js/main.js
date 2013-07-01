@@ -24,12 +24,13 @@ window.onload = function(){
         fontFamily: 'Helvetica',
         strokeStyle: '#f7f7f7',
         strokeWidth: 1,
-        fill: '#F7F7F7'
+        fill: '#F7F7F7',
+        selectable: false
     });
     canvas.add(score);
 
     canvas.on('mouse:down', function(options) {
-        if (options.target) {
+        if (options.target && options.target.type == 'circle') {
             var bubble = options.target.Bubble;
             var arr = doClick(grid, bubble.r, bubble.c);
             if(arr){
@@ -37,6 +38,20 @@ window.onload = function(){
                 score.text = "Score: "+SCORE;
                 deleteAndFill(grid,arr[1]);
                 canvas.renderAll();
+            }
+            else{
+                options.target.animate('strokeWidth', 3, {
+                    onChange: canvas.renderAll.bind(canvas),
+                    duration: 300,
+                    easing: fabric.util.ease.easeOutCubic,
+                    onComplete: function() {
+                        options.target.animate('strokeWidth', 1, {
+                            onChange: canvas.renderAll.bind(canvas),
+                            duration: 150,
+                            easing: fabric.util.ease.easeInCubic                            
+                        });
+                    }
+                });
             }
         }
     });

@@ -13,11 +13,18 @@ function Bubble(grid, r, c, canvas, color, circle){
 }
 
 Bubble.prototype.update = function(){
-	this.circle.animate('top', this.r*(rad+pad)*2+rad, {
-		onChange: this.canvas.renderAll.bind(this.canvas),
-		duration: 800,
-		easing: fabric.util.ease.easeInCubic
-	});	
+	if(this.circle.top != this.r*(rad+pad)*2+rad)
+		this.circle.animate('top', this.r*(rad+pad)*2+rad, {
+			onChange: this.canvas.renderAll.bind(this.canvas),
+			duration: 800,
+			easing: fabric.util.ease.easeInQuad // gravity is quadratic, silly
+		});
+	if(this.circle.left != this.c*(rad+pad)*2+rad)
+		this.circle.animate('left', this.c*(rad+pad)*2+rad, {
+			onChange: this.canvas.renderAll.bind(this.canvas),
+			duration: 800,
+			easing: fabric.util.ease.easeInQuad
+		});	
 }
 
 // @param sincle color int

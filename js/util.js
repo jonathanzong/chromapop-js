@@ -80,7 +80,6 @@ function deleteAndFill(grid, delList){
 	// rotate bubbles down in place of removed
 	for(var i=0;i<delList.size();i++){
 		var item = delList.get(i);
-		console.log(item);
 		if(item.color != 0)
 			continue;
 		var list = new Array();
@@ -89,7 +88,7 @@ function deleteAndFill(grid, delList){
 		for(var row = 0;row<=r;row++)
 			list.push(grid[row][col]);		
 		for(var x=0;x<r&&list[list.length-1].color == 0 && delList.contains(list[list.length-1]);x++)
-			list.rotate();
+			list.rotate(); // i'll fix this later
 		for(var row = 0;row<=r;row++){
 			grid[row][col] = list[row];
 			list[row].r = row;
@@ -97,7 +96,7 @@ function deleteAndFill(grid, delList){
 		}
 	}
 	// refill bubbles
-	if(refill)
+	if(refill){
 		for(var i=0;i<delList.size();i++){
 			if(delList.get(i).color==0){
 				var color = VALS[(Math.random()*VALS.length)|0];
@@ -109,6 +108,22 @@ function deleteAndFill(grid, delList){
 		        }));
 		    }
 		}
+	}
+	// shift empty colums to the left
+	else{
+		for(var c=0;c<n-1;c++){
+			if(grid[m-1][c].color == 0){
+				for(var r=0;r<m;r++){
+					var temp = grid[r][c];
+					grid[r][c] = grid[r][c+1];
+					grid[r][c].c = c;
+					grid[r][c+1] = temp;
+					grid[r][c+1].c = c+1;
+					grid[r][c].update();
+				}
+			}
+		}
+	}
 }
 
 // returns [score, set (object) to pop] or null if invalid click
